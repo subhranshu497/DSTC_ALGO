@@ -2,6 +2,8 @@ package com.algo.LinkedList;
 
 import java.util.HashSet;
 
+import static com.algo.LinkedList.Node.printLinkedList;
+
 public class RemoveDupLL {
     public static void main(String[] args) {
         Node n1 = new Node(2);
@@ -23,17 +25,6 @@ public class RemoveDupLL {
         System.out.println("Post removal of Dups ");
         printLinkedList(n1);
 
-    }
-
- //print LL
-    public static void printLinkedList(Node head){
-        if(head == null) return;
-        System.out.print(head.data +" "+"-->");
-        Node curr_node = head.next;
-        while (curr_node != null){
-            System.out.print(curr_node.data +" "+"-->");
-            curr_node = curr_node.next;
-        }
     }
     //remove Dups
     public static void removeDupFromLL(Node node) {

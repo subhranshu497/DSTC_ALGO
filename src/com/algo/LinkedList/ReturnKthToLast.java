@@ -1,6 +1,7 @@
 package com.algo.LinkedList;
 //Returning the value of the Kth node from last
-import static com.algo.LinkedList.RemoveDupLL.printLinkedList;
+import static com.algo.LinkedList.Node.printLinkedList;
+
 
 public class ReturnKthToLast {
 
