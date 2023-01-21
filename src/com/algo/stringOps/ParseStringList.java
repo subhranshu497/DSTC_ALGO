@@ -11,12 +11,13 @@ import java.util.List;
 public class ParseStringList {
     public static void main(String[] args) {
         List<String> strings = null;
-        String str1 = "Java\nDotnet\nPhthon\nAWS\nAzure\nGCP";
+        String str1 = "Java;Dotnet;Phthon;AWS;Azure;GCP";
         System.out.println("Input was :- "+str1);
         parseListOfString(str1);
     }
     public static void parseListOfString(String str){
-        String[] strArr = str.split("\\R");
+        //String[] strArr = str.split("\\R" || "\\s+" ||","||";");
+        String[] strArr = str.split("\\R\\s+,;");
         System.out.println(Arrays.toString(strArr));
         for(String s:strArr){
             System.out.println(s);
