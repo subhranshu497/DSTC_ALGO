@@ -2,6 +2,8 @@ package com.algo.LinkedList;
 
 import static com.algo.LinkedList.Node.printLinkedList;
 
+//1. find the linked list is cyclic or not
+//2. return the node where the cycle begins
 public class CycleDetectionLL {
     public static void main(String[] args) {
         //List1
@@ -18,26 +20,36 @@ public class CycleDetectionLL {
         list1_n2.next =list1_n3;
         list1_n3.next =list1_n4;
         list1_n4.next =list1_n5;
-        list1_n5.next =list1_n6;
+        list1_n5.next =list1_n5;
         //list1_n6.next =list1_n3;
         System.out.println("====List is=====");
-        //printLinkedList(list1_n1);
+        printLinkedList(list1_n1);
         System.out.println();
         boolean flag = detectCycleLL(list1_n1);
         if(flag)
             System.out.println("The list is a cyclic Linked List");
-        else
-            System.out.println("The Linked list is not a cyclic one");
     }
     public static boolean detectCycleLL(Node head){
         Node fast = head;
         Node slow = head;
-        while(slow != null && fast != null && fast.next != null){
+        while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
             if(slow == fast)
-                return true;
+                break;
         }
-        return false;
+        if(fast == null || fast.next == null) {
+            System.out.println("The Linked list is not a cyclic one");
+            return false;
+        }
+        else{
+            slow =head;
+            while(slow != fast){
+                slow = slow.next;
+                fast = fast.next;
+            }
+            System.out.println("Cycle starts at node "+slow.data);
+        }
+        return true;
     }
 }
