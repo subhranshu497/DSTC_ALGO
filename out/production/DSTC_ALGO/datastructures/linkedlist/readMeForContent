@@ -1,0 +1,3 @@
+LinkedListMiddleNodeFinder.java file contains code for
+    1. finding the middle node of a linked list without using length variable from the linked list
+    2. finding a cycle exists in linked list
