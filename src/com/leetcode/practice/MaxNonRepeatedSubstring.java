@@ -1,24 +1,37 @@
 package com.leetcode.practice;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MaxNonRepeatedSubstring {
     public static void main(String[] args) {
         String str = "abcabcb";
-        System.out.println(maxSubstringFinder(str));
+        System.out.println(maxSubstringFinderOptimized(str));
     }
 
-    private static int maxSubstringFinder(String str) {
+    private static int maxSubstringFinderOptimized(String str) {
+        int right =0;
         int left =0;
-        int right = 0;
-        int result = 0;
-        Integer [] chars = new Integer[128];
+        int max =0;
+        Set<Character> set = new HashSet<>();
         while(right < str.length()){
-            char r = str.charAt(right);
-            Integer index = chars[r];
-            if(index !=null && index >=left && index<right) left = index+1;
-            result = Math.max(result, right-left+1);
-            chars[r] = right;
+            char c = str.charAt(right);
+            if(set.contains(c)){
+                while(left < right){
+                    if(c == str.charAt(left)){
+                        set.remove(str.charAt(left));
+                    }
+                    left++;
+                }
+
+            }
+            set.add(c);
+            max = Math.max(max, right-left+1);
             right++;
         }
-        return result;
+
+        return max;
     }
+
+
 }
