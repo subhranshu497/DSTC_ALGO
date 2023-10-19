@@ -1,13 +1,17 @@
 package com.algo.anagram;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Hashtable;
 
 public class Anagram {
     public static void main(String[] args) {
-        String s1 = "nameless";
-        String s2 = "saleiman";
-        boolean flag = checkAnagram(s1, s2);
+        String s1 = "restful";
+        String s2 = "luf";
+        char[]s11 = s1.toCharArray();
+        char[]s22 = s2.toCharArray();
+        boolean flag = solve(s11,s22);
+        //boolean flag = checkAnagram(s1, s2);
         if(flag)
             System.out.println(s1+" and "+s2+" are anagram");
         else
@@ -39,5 +43,18 @@ public class Anagram {
             return true;
         else
             return false;
+    }
+
+    public static boolean solve(char[] s1, char[] s2) {
+
+        if(s1.length != s2.length) return false;
+        Arrays.sort(s1);
+        Arrays.sort(s2);
+        int i=0;
+        while(i<s1.length){
+            if(s1[i] !=s2[i]) return false;
+            i++;
+        }
+        return true;
     }
 }
