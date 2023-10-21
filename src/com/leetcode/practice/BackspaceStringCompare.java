@@ -16,11 +16,13 @@ public class BackspaceStringCompare {
 
     private static String getActual(String s) {
         StringBuilder actualString = new StringBuilder();
+        //String actualString ="";
         int hashCount =0;
         for(int i=s.length()-1;i>=0;i--){
             // check for hash count and build
             if(hashCount ==0 && s.charAt(i) !='#'){
                 actualString = actualString.append(s.charAt(i));
+                //actualString = actualString+s.charAt(i);
             }
             //check for # and keep increasing the hash count
             else if(s.charAt(i)=='#'){

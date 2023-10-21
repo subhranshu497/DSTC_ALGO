@@ -1,6 +1,6 @@
 package com.datastructure.tree;
 
-public class InorderTraversalBinaryTree {
+public class TraversalBinaryTree {
     public static void main(String[] args) {
         Tree intTree = new Tree();
         intTree.insert(25);
@@ -14,6 +14,10 @@ public class InorderTraversalBinaryTree {
         intTree.insert(32);
 
         intTree.traverseInorder();
+        System.out.println();
+        intTree.traversePreorder();
+        System.out.println();
+        intTree.traversePostorder();
     }
 
 }

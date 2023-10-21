@@ -1,14 +1,33 @@
 package com.datastructure.tree;
 
 public class TreeNode {
-    public int val;
+    public int data;
     public TreeNode left;
     public TreeNode right;
 
-    public TreeNode (int val){
-        this.val = val;
+    public TreeNode (int data){
+        this.data = data;
        // this.left = this.right =null;
     }
+
+    /**
+     * to get data from the tree
+     */
+    public TreeNode getData(int value) {
+        if(data == value){
+            return this;
+        }
+        if(value <data){
+            if(left !=null){
+                return left.getData(value);
+            }
+            else{
+                return right.getData(value);
+            }
+        }
+        return null;
+    }
+
     /**
      * Inorder traversal
      */
@@ -16,10 +35,34 @@ public class TreeNode {
         if(left !=null){
             left.traverseInorder();
         }
-        System.out.print(val+", ");
+        System.out.print(data+", ");
         if(right != null){
             right.traverseInorder();
         }
+    }
+    /**
+     * Pre order traversal root -->left --right
+     */
+    public void traversePreorder() {
+        System.out.print(data+", ");
+        if(left !=null){
+            left.traversePreorder();
+        }
+        if(right !=null){
+            right.traversePreorder();
+        }
+    }
+    /**
+     * PostOrder Traversal
+     */
+    public void traversePostorder(){
+        if(left != null){
+            left.traversePostorder();
+        }
+        if(right !=null){
+            right.traversePostorder();
+        }
+        System.out.print(data+", ");
     }
 
     /**
@@ -27,32 +70,32 @@ public class TreeNode {
      * @return
      */
     public void insert(int value){
-        if(value == val) return;
+        if(value == data) return;
         //for the left sub tree
-        if(value < val){
+        if(value < data){
             if(left == null){
                 left = new TreeNode(value);
             }
             else{
                 left.insert(value);
             }
-            if(value > val){
-                if(right == null){
-                    right = new TreeNode(value);
-                }
-                else{
-                    right.insert(value);
-                }
+        }
+        if(value > data){
+            if(right == null){
+                right = new TreeNode(value);
+            }
+            else{
+                right.insert(value);
             }
         }
     }
 
-    public int getVal() {
-        return val;
+    public int getData() {
+        return data;
     }
 
-    public void setVal(int val) {
-        this.val = val;
+    public void setData(int data) {
+        this.data = data;
     }
 
     public TreeNode getLeft() {
