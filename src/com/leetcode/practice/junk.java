@@ -1,47 +1,43 @@
 package com.leetcode.practice;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class junk {
-    public String longestPalindrome(String str) {
-        if (str.length() <= 1)
-            return str;
+    private Map<Integer, Integer> memo = new HashMap<>();
+    Set<Integer> add = Set.of(1, 9, 99);
 
-        String LPS = "";
+    public int getLengthOfOptimalCompression(String s, int k) {
+        return dp(s, 0, (char) ('a' + 26), 0, k);
+    }
 
-        for (int i = 1; i < str.length(); i++) {
-
-            // Consider odd length
-            int low = i;
-            int high = i;
-            while(str.charAt(low) == str.charAt(high)) {
-                low--;
-                high++;
-
-                if (low == -1 || high == str.length())
-                    break;
-            }
-
-            String palindrome = str.substring(low+1, high);
-            if (palindrome.length() > LPS.length()) {
-                LPS = palindrome;
-            }
-
-            // Consider even length
-            low = i-1;
-            high = i;
-            while(str.charAt(low) == str.charAt(high)) {
-                low--;
-                high++;
-
-                if (low == -1 || high == str.length())
-                    break;
-            }
-
-            palindrome = str.substring(low+1, high);
-            if (palindrome.length() > LPS.length()) {
-                LPS = palindrome;
-            }
+    private int dp(String s, int idx, char lastChar, int lastCharCount, int k) {
+        if (k < 0) {
+            return Integer.MAX_VALUE / 2;
         }
 
-        return LPS;
+        if (idx == s.length()) {
+            return 0;
+        }
+
+        int key = idx * 101 * 27 * 101 + (lastChar - 'a') * 101 * 101 + lastCharCount * 101 + k;
+
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+
+        int keepChar;
+        int deleteChar = dp(s, idx + 1, lastChar, lastCharCount, k - 1);
+        if (s.charAt(idx) == lastChar) {
+            keepChar = dp(s, idx + 1, lastChar, lastCharCount + 1, k) + (add.contains(lastCharCount) ? 1 : 0);
+        } else {
+            keepChar = dp(s, idx + 1, s.charAt(idx), 1, k) + 1;
+        }
+        int res = Math.min(keepChar, deleteChar);
+        memo.put(key, res);
+
+        return res;
     }
+
 }

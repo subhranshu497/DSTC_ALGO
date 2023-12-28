@@ -2,8 +2,8 @@ package com.leetcode.practice;
 
 public class MinimumTimeToMakeRopeColorful {
     public static void main(String[] args) {
-        int[] neededTime = {1,2,3,4,1};
-        String colors = "aabaa";
+        int[] neededTime = {1,2,3,4,5};
+        String colors = "abaac";
         System.out.println(minCost(neededTime, colors));
     }
 
