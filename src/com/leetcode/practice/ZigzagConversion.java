@@ -2,23 +2,29 @@ package com.leetcode.practice;
 
 public class ZigzagConversion {
     public static void main(String[] args) {
-        String str = "PAYPALISHIRING";
+        String s = "PAYPALISHIRING";
         int rowNum = 4;
-        System.out.println(convert(str,rowNum));
+        System.out.println(convert(s,rowNum));
     }
 
-    private static String convert(String str, int rowNum) {
-        String result ="";
-        if(str.isEmpty()) return result;
-        int step = 2*(rowNum-2);
-        for(int i=0;i<rowNum;i++){
-            for(int j=i;j<str.length();j+=step){
-                result += str.charAt(j);
-                if(i>=1 && i<=rowNum-2 && j+(step-2*i)<str.length()){
-                    result +=str.charAt(j+step-2*i);
+    private static String convert(String s, int rowNum) {
+        int charInSection = 2*(rowNum-1); //2(4-1)=6
+        int length = s.length();
+        StringBuilder sb = new StringBuilder();
+        for(int currRow =0;currRow<rowNum;currRow++){
+            int index = currRow;
+            while(index <length){
+                sb.append(s.charAt(index));
+                if(currRow !=0 && currRow !=(rowNum-1)){
+                    int charInBetween = charInSection- (2*currRow);
+                    int secondIndex = index+charInBetween;
+                    if(secondIndex<length) sb.append(s.charAt(secondIndex));
                 }
+                index += charInSection;
             }
         }
-        return result;
+        return sb.toString();
     }
+
+
 }

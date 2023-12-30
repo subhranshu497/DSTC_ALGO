@@ -1,0 +1,15 @@
+Binary search tree is a tree, whose left children are less than root and right children are greater than the root node.
+
+Traversal
+-------
+BST can be traversed in 4 ways
+    -Level
+    -Preorder
+    -postOrder
+    -Inorder
+--------------
+Level Traversal - In this way , tree can be traversed level by level
+PreOrder Traversal - start from root to left most leaf node , then trverse up in the sequence. root -->left--->right
+postorder traversal - starts with left , than right and then root left -->right --> root
+Inorder Traversal - starts with the left most leaf node and then traverse , left -->root -->right
+    *Inorder traversal of a BST always gives a sorted result
