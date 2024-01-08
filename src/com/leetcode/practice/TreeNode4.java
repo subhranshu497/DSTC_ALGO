@@ -1,6 +1,7 @@
 package com.leetcode.practice;
 
 import java.net.HttpRetryException;
+import java.util.Stack;
 
 public class TreeNode4 {
     int val;
@@ -27,7 +28,7 @@ class Solution2 {
         root.left.left = new TreeNode4(3);
         root.left.right = new TreeNode4(7);
         root.right.right = new TreeNode4(18);
-        System.out.println(rangeSumBST(root, low, high));
+        System.out.println(rangeIter(root, low, high));
     }
     public static int rangeSumBST(TreeNode4 root, int low, int high) {
         traverse(root,low,high);
@@ -44,5 +45,21 @@ class Solution2 {
 
             if(high > root.val) rangeSumBST(root.right, low, high);
         }
+    }
+    public static int rangeIter(TreeNode4 root, int low, int high){
+        int result = 0;
+        Stack<TreeNode4> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode4 node = stack.pop();
+            if(node !=null) {
+                if (low <= node.val && high >= node.val) {
+                    result += node.val;
+                }
+                if (low < node.val) stack.push(node.left);
+                if (high > node.val) stack.push(node.right);
+            }
+        }
+        return result;
     }
 }
